@@ -150,6 +150,16 @@ module JSONAPI
         #       { author_online: @object.author.online? }
         #     end
         #   end
+        #
+        # @example
+        #   relationship :books do
+        #     data do
+        #       @object.books
+        #     end
+        #     linkage do
+        #       @object.books.map { |book| { id: book.id.to_s, type: 'books', name: book.name } }
+        #     end
+        #   end
         def relationship(name, options = {}, &block)
           rel_block = proc do
             data { @object.public_send(name) }
